@@ -1,6 +1,25 @@
 import React from "react";
 
-function SearchBar() {
+function SearchBar({ onFilter, onSort }) {
+  // const [alphaIsChecked, setAlphaIsChecked] = useState(false);
+  // const [priceIsChecked, setPriceIsChecked] = useState(false);
+
+  function handleAlphaCheck() {
+    // setAlphaIsChecked(!alphaIsChecked);
+    // if (alphaIsChecked || priceIsChecked) {
+    //   setPriceIsChecked(!priceIsChecked);
+    // }
+    onSort("name");
+  }
+
+  function handlePriceCheck() {
+    // setPriceIsChecked(!priceIsChecked);
+    // if (alphaIsChecked || priceIsChecked) {
+    //   setAlphaIsChecked(!alphaIsChecked);
+    // }
+    onSort("price");
+  }
+
   return (
     <div>
       <strong>Sort by:</strong>
@@ -9,8 +28,8 @@ function SearchBar() {
           type="radio"
           value="Alphabetically"
           name="sort"
-          checked={null}
-          onChange={null}
+          // checked={alphaIsChecked}
+          onChange={handleAlphaCheck}
         />
         Alphabetically
       </label>
@@ -19,15 +38,16 @@ function SearchBar() {
           type="radio"
           value="Price"
           name="sort"
-          checked={null}
-          onChange={null}
+          // checked={priceIsChecked}
+          onChange={handlePriceCheck}
         />
         Price
       </label>
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={(event) => onFilter(event.target.value)}>
+          <option value="All">All</option>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
